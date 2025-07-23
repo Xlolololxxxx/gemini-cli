@@ -28,6 +28,7 @@ import { editorCommand } from '../ui/commands/editorCommand.js';
 import { bugCommand } from '../ui/commands/bugCommand.js';
 import { quitCommand } from '../ui/commands/quitCommand.js';
 import { restoreCommand } from '../ui/commands/restoreCommand.js';
+import { syspromptCommand } from '../ui/commands/syspromptCommand.js';
 
 // Mock the command modules to isolate the service from the command implementations.
 vi.mock('../ui/commands/memoryCommand.js', () => ({
@@ -87,9 +88,12 @@ vi.mock('../ui/commands/quitCommand.js', () => ({
 vi.mock('../ui/commands/restoreCommand.js', () => ({
   restoreCommand: vi.fn(),
 }));
+vi.mock('../ui/commands/syspromptCommand.js', () => ({
+  syspromptCommand: { name: 'sysprompt', description: 'Mock System Prompt' },
+}));
 
 describe('CommandService', () => {
-  const subCommandLen = 18;
+  const subCommandLen = 19;
   let mockConfig: Mocked<Config>;
 
   beforeEach(() => {
@@ -143,6 +147,7 @@ describe('CommandService', () => {
         expect(commandNames).toContain('extensions');
         expect(commandNames).toContain('tools');
         expect(commandNames).toContain('mcp');
+        expect(commandNames).toContain('sysprompt');
         expect(commandNames).not.toContain('ide');
       });
 
@@ -216,6 +221,7 @@ describe('CommandService', () => {
           privacyCommand,
           quitCommand,
           statsCommand,
+          syspromptCommand,
           themeCommand,
           toolsCommand,
         ]);

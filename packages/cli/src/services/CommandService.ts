@@ -26,6 +26,7 @@ import { ideCommand } from '../ui/commands/ideCommand.js';
 import { bugCommand } from '../ui/commands/bugCommand.js';
 import { quitCommand } from '../ui/commands/quitCommand.js';
 import { restoreCommand } from '../ui/commands/restoreCommand.js';
+import { syspromptCommand } from '../ui/commands/syspromptCommand.js';
 
 const loadBuiltInCommands = async (
   config: Config | null,
@@ -49,6 +50,7 @@ const loadBuiltInCommands = async (
     quitCommand,
     restoreCommand(config),
     statsCommand,
+    syspromptCommand,
     themeCommand,
     toolsCommand,
   ];
